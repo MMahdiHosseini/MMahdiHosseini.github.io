@@ -1,11 +1,10 @@
 {
-"name": "محمد مهدی حسینی",
-"short_name": "MMH",
-"start_url": "/",
-"display": "standalone",
-"background_color": "#0A0A0A",
-"theme_color": "#D4AF37",
-"orientation": "portrait",
+"name":"محمد مهدی حسینی",
+"short_name":"MMH",
+"theme_color":"#B08D57",
+"background_color":"#F8F6F1",
+"display":"standalone",
+"start_url":"/",
 "icons": [
 {
 "src": "favicon-192.png",

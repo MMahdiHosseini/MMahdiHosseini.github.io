@@ -1,31 +1,90 @@
-/* ======================================
-SCROLL PROGRESS BAR
-====================================== */
+/* ====================================
+ACTIVE MENU HIGHLIGHT
+==================================== */
 
-const progressBar = document.querySelector('.scroll-progress');
+const sections =
+document.querySelectorAll("section");
 
-window.addEventListener('scroll', () => {
+const navLinks =
+document.querySelectorAll(".sidebar-nav a");
 
-const scrollTop = window.scrollY;
+window.addEventListener("scroll", () => {
 
-const documentHeight =
-document.documentElement.scrollHeight -
-window.innerHeight;
+let currentSection = "";
 
-const progress =
-(scrollTop / documentHeight) * 100;
+sections.forEach(section => {
 
-progressBar.style.width = progress + '%';
+const sectionTop =
+section.offsetTop - 150;
+
+if(window.scrollY >= sectionTop){
+
+currentSection =
+section.getAttribute("id");
+
+}
 
 });
 
-/* ======================================
-SCROLL REVEAL
-====================================== */
+navLinks.forEach(link => {
+
+link.classList.remove("active");
+
+if(
+link.getAttribute("href")
+=== "#" + currentSection
+){
+
+link.classList.add("active");
+
+}
+
+});
+
+});
+
+/* ====================================
+SMOOTH SCROLL
+==================================== */
+
+document
+.querySelectorAll('a[href^="#"]')
+.forEach(anchor => {
+
+anchor.addEventListener(
+"click",
+function(e){
+
+e.preventDefault();
+
+const target =
+document.querySelector(
+this.getAttribute("href")
+);
+
+if(target){
+
+target.scrollIntoView({
+
+behavior:"smooth",
+block:"start"
+
+});
+
+}
+
+}
+);
+
+});
+
+/* ====================================
+SIMPLE REVEAL ANIMATION
+==================================== */
 
 const revealElements =
 document.querySelectorAll(
-'.card,.project-card,.document-card,.skill,.timeline-item,.section-title'
+".card,.project-card,.document-card,.skill,.timeline-item"
 );
 
 const revealObserver =
@@ -37,7 +96,9 @@ entries.forEach(entry=>{
 
 if(entry.isIntersecting){
 
-entry.target.classList.add('show');
+entry.target.classList.add(
+"revealed"
+);
 
 }
 
@@ -46,185 +107,147 @@ entry.target.classList.add('show');
 },
 
 {
-threshold:0.15
+threshold:0.1
 }
 
 );
 
 revealElements.forEach(el=>{
 
-el.classList.add('fade-up');
+el.classList.add("reveal");
 
 revealObserver.observe(el);
 
 });
 
-/* ======================================
-NAVBAR SCROLL EFFECT
-====================================== */
+/* ====================================
+YEAR AUTO UPDATE
+==================================== */
 
-const navbar =
-document.querySelector('.navbar');
+const copyright =
+document.querySelector(".copyright");
 
-window.addEventListener('scroll',()=>{
+if(copyright){
+
+copyright.innerHTML =
+"© " + new Date().getFullYear();
+
+}
+
+/* ====================================
+HEADER SHADOW ON SCROLL
+==================================== */
+
+window.addEventListener(
+"scroll",
+()=>{
+
+const sidebar =
+document.querySelector(
+".sidebar"
+);
 
 if(window.scrollY > 50){
 
-navbar.style.background =
-'rgba(10,10,10,.92)';
+sidebar.style.boxShadow =
+"0 15px 40px rgba(0,0,0,.08)";
 
-navbar.style.borderBottom =
-'1px solid rgba(212,175,55,.25)';
+}else{
 
-}
-
-else{
-
-navbar.style.background =
-'rgba(10,10,10,.80)';
-
-navbar.style.borderBottom =
-'1px solid rgba(212,175,55,.15)';
+sidebar.style.boxShadow =
+"0 10px 30px rgba(0,0,0,.03),0 30px 60px rgba(0,0,0,.04)";
 
 }
 
-});
-
-/* ======================================
-ACTIVE MENU ITEM
-====================================== */
-
-const sections =
-document.querySelectorAll('section');
-
-const navLinks =
-document.querySelectorAll('.navbar a');
-
-window.addEventListener('scroll',()=>{
-
-let current = '';
-
-sections.forEach(section=>{
-
-const sectionTop =
-section.offsetTop - 150;
-
-const sectionHeight =
-section.clientHeight;
-
-if(window.scrollY >= sectionTop){
-
-current = section.getAttribute('id');
-
 }
+);
 
-});
 
-navLinks.forEach(link=>{
+/* ==========================
+   MOBILE MENU
+========================== */
 
-link.classList.remove('active');
+const menuToggle =
+document.getElementById(
+'menuToggle'
+);
 
-if(
-
-link.getAttribute('href')
-=== '#' + current
-
-){
-
-link.classList.add('active');
-
-}
-
-});
-
-});
-
-/* ======================================
-SMOOTH INTERNAL LINKS
-====================================== */
-
-document
-.querySelectorAll('a[href^="#"]')
-.forEach(anchor=>{
-
-anchor.addEventListener(
-'click',
-function(e){
-
-e.preventDefault();
-
-const target =
+const sidebar =
 document.querySelector(
-this.getAttribute('href')
+'.sidebar'
 );
 
-if(target){
+const closeSidebar =
+document.getElementById(
+'closeSidebar'
+);
 
-target.scrollIntoView({
+const overlay =
+document.getElementById(
+'overlay'
+);
 
-behavior:'smooth'
+const mobileLinks =
+document.querySelectorAll(
+'.sidebar-nav a'
+);
 
-});
+function closeMenu(){
+
+sidebar.classList.remove(
+'active'
+);
+
+overlay.classList.remove(
+'active'
+);
 
 }
 
+function openMenu(){
+
+sidebar.classList.add(
+'active'
+);
+
+overlay.classList.add(
+'active'
+);
+
 }
 
+if(menuToggle){
+
+menuToggle.addEventListener(
+'click',
+openMenu
+);
+
+}
+
+if(closeSidebar){
+
+closeSidebar.addEventListener(
+'click',
+closeMenu
+);
+
+}
+
+if(overlay){
+
+overlay.addEventListener(
+'click',
+closeMenu
+);
+
+}
+
+mobileLinks.forEach(link=>{
+
+link.addEventListener(
+'click',
+closeMenu
 );
 
 });
-
-/* ======================================
-HERO FADE EFFECT
-====================================== */
-
-const hero =
-document.querySelector('.hero');
-
-window.addEventListener('scroll',()=>{
-
-const value =
-window.scrollY;
-
-hero.style.opacity =
-1 - value / 700;
-
-});
-
-/* ======================================
-GOLD GLOW FOLLOW EFFECT
-====================================== */
-
-const glow =
-document.createElement('div');
-
-glow.classList.add('mouse-glow');
-
-document.body.appendChild(glow);
-
-document.addEventListener(
-'mousemove',
-(e)=>{
-
-glow.style.left =
-e.clientX + 'px';
-
-glow.style.top =
-e.clientY + 'px';
-
-}
-);
-
-/* ======================================
-CONSOLE BRANDING
-====================================== */
-
-console.log(
-'%cمحمد مهدی حسینی',
-'color:#D4AF37;font-size:20px;font-weight:bold;'
-);
-
-console.log(
-'%cPortfolio Website',
-'color:white;font-size:14px;'
-);
