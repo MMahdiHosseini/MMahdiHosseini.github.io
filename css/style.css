@@ -281,13 +281,9 @@ CONTENT
 =================================== */
 
 .content{
-
 width:100%;
-
 margin-right:420px;
-
-padding:60px;
-
+padding:0px 60px 60px;
 }
 
 /* ===================================
@@ -295,13 +291,10 @@ HERO
 =================================== */
 
 .hero-section{
-
 min-height:100vh;
-
 display:flex;
-
 align-items:center;
-
+padding-top:0;
 }
 
 .hero-grid{

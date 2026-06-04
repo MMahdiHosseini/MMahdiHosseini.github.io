@@ -8,40 +8,15 @@ document.querySelectorAll("section");
 const navLinks =
 document.querySelectorAll(".sidebar-nav a");
 
-window.addEventListener("scroll", () => {
+window.addEventListener(
+"scroll",
+updateActiveMenu
+);
 
-let currentSection = "";
-
-sections.forEach(section => {
-
-const sectionTop =
-section.offsetTop - 150;
-
-if(window.scrollY >= sectionTop){
-
-currentSection =
-section.getAttribute("id");
-
-}
-
-});
-
-navLinks.forEach(link => {
-
-link.classList.remove("active");
-
-if(
-link.getAttribute("href")
-=== "#" + currentSection
-){
-
-link.classList.add("active");
-
-}
-
-});
-
-});
+window.addEventListener(
+"load",
+updateActiveMenu
+);
 
 /* ====================================
 SMOOTH SCROLL
@@ -251,3 +226,38 @@ closeMenu
 );
 
 });
+
+function updateActiveMenu(){
+
+let currentSection = "hero";
+
+sections.forEach(section=>{
+
+const sectionTop =
+section.offsetTop - 150;
+
+if(window.scrollY >= sectionTop){
+
+currentSection =
+section.getAttribute("id");
+
+}
+
+});
+
+navLinks.forEach(link=>{
+
+link.classList.remove("active");
+
+if(
+link.getAttribute("href")
+=== "#" + currentSection
+){
+
+link.classList.add("active");
+
+}
+
+});
+
+}
