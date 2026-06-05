@@ -196,6 +196,10 @@ margin:auto auto 30px;
 
 }
 
+.hero-buttons{
+    margin-bottom: 10%;
+}
+
 .projects-grid{
 
 grid-template-columns:1fr;
@@ -306,6 +310,8 @@ flex-direction:column;
 
 align-items:center;
 
+margin-bottom: 10%;
+
 }
 
 .btn-primary,
@@ -389,6 +395,10 @@ font-size:1rem;
 
 font-size:.9rem;
 
+}
+
+.hero-buttons{
+    margin-bottom: 5%;
 }
 
 .section-title{
