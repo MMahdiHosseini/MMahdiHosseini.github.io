@@ -127,7 +127,13 @@ html[data-theme='light'] .bg-knight{opacity:.09;}
   50%{transform:rotate(-6.5deg) translateY(-20px);}
 }
 @media (max-width:760px){
-  .bg-knight{font-size:clamp(200px,72vw,420px);bottom:-5%;right:-9%;}
+  .bg-knight{
+    font-size:clamp(360px,108vw,600px);
+    bottom:-7%;right:-13%;
+    transform:rotate(-6deg);
+    animation:none;
+  }
+  html[data-theme='light'] .bg-knight{opacity:.05;}
 }
 @media (prefers-reduced-motion:reduce){
   .bg-knight{animation:none;}
