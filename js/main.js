@@ -13,7 +13,7 @@
     // Leave it empty and the form opens the visitor's email app instead.
     web3formsKey: '',
     toEmail: 'hello@example.com',
-    mapQuery: 'Shiraz, Iran',
+    mapQuery: 'Tehran, Iran',
     defaultLang: 'en'            // 'en' or 'fa'
   };
 
